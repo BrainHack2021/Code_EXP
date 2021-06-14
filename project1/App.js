@@ -33,7 +33,7 @@ const Tab = createBottomTabNavigator();
 
 function ReactNavigationBottomTabs() {
   return (
-    <NavigationContainer>
+    
       <Tab.Navigator>
         <Tab.Screen
           name='Headcount'
@@ -54,7 +54,7 @@ function ReactNavigationBottomTabs() {
           }}
         />
       </Tab.Navigator>
-    </NavigationContainer>
+    
   );
 }
 

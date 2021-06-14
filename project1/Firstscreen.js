@@ -1,8 +1,13 @@
 import React, { useState } from "react";
-import { View, Picker, StyleSheet } from "react-native";
+import { Button, View, Picker, StyleSheet } from "react-native";
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { propTypes } from "react-bootstrap/esm/Image";
 
-export default function chooser(props) {
+export default function chooser({ navigation: { navigate } }) {
   const [selectedValue, setSelectedValue] = useState("java");
+
+
   return (
     <View>
       <Picker
@@ -13,7 +18,12 @@ export default function chooser(props) {
         <Picker.Item label="Java" value="java" />
         <Picker.Item label="JavaScript" value="js" />
       </Picker>
-      </View>
+      
+      <Button
+        title="Go to Profile"
+        onPress={() => navigate('Profile', { screen: 'Headcount'})} //additional of a button to navigate elsewhere
+      />
+    </View>
   );
 }
 
