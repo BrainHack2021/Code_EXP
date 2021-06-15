@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Picker, } from 'react-native';
-import { Form, Col, Button } from 'react-bootstrap';
+import { StyleSheet, Text, View } from 'react-native';
+import { DataTable } from 'react-native-paper';
 
 // npm i @react-navigation/bottom-tabs react-native-elements react-native-screens @react-navigation/native
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -11,21 +11,57 @@ import  chooser from './Firstscreen';
 
 const Stack = createStackNavigator();
 
+const Table = () => {
+  return (
+    <DataTable>
+      <DataTable.Header>
+        <DataTable.Title>Date</DataTable.Title>
+        <DataTable.Title numeric>Cases</DataTable.Title>
+      </DataTable.Header>
+
+      <DataTable.Row>
+        <DataTable.Cell>12 June 2021</DataTable.Cell>
+        <DataTable.Cell numeric>5</DataTable.Cell>
+      </DataTable.Row>
+
+      <DataTable.Row>
+        <DataTable.Cell>10 June 2021</DataTable.Cell>
+        <DataTable.Cell numeric>9</DataTable.Cell>
+      </DataTable.Row>
+    </DataTable>
+  );
+}
+
 function TabA() {
+  var count = 9999;
+  var level = (count > 5000)
   const [selectedValue, setSelectedValue] = useState("java");
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Estimated Count:</Text>
+      <Text style={styles.text}>Estimated Count: 
+        <Text style={level ? styles.danger : styles.normal}> {count}</Text>
+      </Text>
+      <chooser />
     </View>
   );
 }
+
 function TabB() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Past Cases</Text>
+      <Table />
       <chooser />
     </View>
-    
+  );
+}
+
+function TabC() {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Similar Places</Text>
+      <chooser />
+    </View>
   );
 }
 
@@ -33,7 +69,6 @@ const Tab = createBottomTabNavigator();
 
 function ReactNavigationBottomTabs() {
   return (
-    
       <Tab.Navigator>
         <Tab.Screen
           name='Headcount'
@@ -53,8 +88,16 @@ function ReactNavigationBottomTabs() {
             ),
           }}
         />
+        <Tab.Screen
+          name='Alternatives'
+          component={TabC}
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <Icon name='list' color={color} size={size} />
+            ),
+          }}
+        />
       </Tab.Navigator>
-    
   );
 }
 
@@ -79,4 +122,17 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: 'bold',
   },
+  danger: {
+    color: 'red'
+  },
+  normal: {
+    color: 'green'
+  },
+  head: {
+    height: 40,
+    backgroundColor: 'grey'
+  },
+  tabletext: {
+    margin: 6
+  }
 });
