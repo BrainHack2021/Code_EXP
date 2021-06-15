@@ -6,7 +6,7 @@ import { propTypes } from "react-bootstrap/esm/Image";
 
 export default function chooser({ navigation }) {
   const [locationId, setSelectedId] = useState("1");
-  const [locationOutlet, setSelectedOutlet] = useState(0);
+  const [locationOutlet, setSelectedOutlet] = useState('0');
 
   return (
     <View>
@@ -19,10 +19,14 @@ export default function chooser({ navigation }) {
             params: { mallName: locationId, storeName: locationOutlet },
           })} //additional of a button to navigate elsewhere
         />
+        
         <Picker
           selectedValue={locationId}
           style={{ height: 50, width: 150 }}
-          onValueChange={(itemValue) => setSelectedId(itemValue)}
+          onValueChange={(itemValue) => {
+            setSelectedOutlet("0");
+            setSelectedId(itemValue);}
+          }
         >
           <Picker.Item label="Ion" value="1" />
           <Picker.Item label="Wisma" value="2" />
@@ -31,6 +35,7 @@ export default function chooser({ navigation }) {
       </View>
       <View style={styles.dropdownBox}>
         {(() => {
+          
           switch (locationId) {
             case "1":
               return (
@@ -39,6 +44,7 @@ export default function chooser({ navigation }) {
                   style={{ height: 50, width: 150 }}
                   onValueChange={(itemValue) => setSelectedOutlet(itemValue)}
                 >
+                  <Picker.Item label="Choose something" value="0" />;
                   <Picker.Item label="Fuck" value="f" />;
                   <Picker.Item label="This" value="t" />;
                   <Picker.Item label="Nonsense" value="s" />;
@@ -52,6 +58,7 @@ export default function chooser({ navigation }) {
                   style={{ height: 50, width: 150 }}
                   onValueChange={(itemValue) => setSelectedOutlet(itemValue)}
                 >
+                  <Picker.Item label="Choose something" value="0" />;
                   <Picker.Item label="Take me 2 hrs knn wtf" value="x" />;
                 </Picker>
               );
@@ -63,6 +70,7 @@ export default function chooser({ navigation }) {
                   style={{ height: 50, width: 150 }}
                   onValueChange={(itemValue) => setSelectedOutlet(itemValue)}
                 >
+                  <Picker.Item label="Choose something" value="0" />;
                   <Picker.Item label="Jesussss" value="fml" />;
                 </Picker>
               );
