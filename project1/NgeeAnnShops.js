@@ -12,7 +12,16 @@ export default function NgeeAnnMenu(locationOutlet, setSelectedOutlet) {
             onValueChange={(itemValue) => setSelectedOutlet(itemValue)}
         >
             <Picker.Item label="Choose Something" value="0" />;
-            <Picker.Item label="Jesussss" value="fml" />;
+            <Picker.Item label="Best Denki" value="c" />;
+            <Picker.Item label="Cartier" value="d" />;
+            <Picker.Item label="Chanel" value="f" />;
+            <Picker.Item label="Fila" value="j" />;
+            <Picker.Item label="Imperial Treasure Fine Shanghai Cuisine" value="m" />;
+            <Picker.Item label="Louis Vuitton" value="p" />;
+            <Picker.Item label="Seiko" value="t" />;
+            <Picker.Item label="Superdry" value="u" />;
+            <Picker.Item label="Tailored Fashions" value="v" />;
+            <Picker.Item label="Tampopo Ramen" value="w" />;
         </Picker>
 
     );

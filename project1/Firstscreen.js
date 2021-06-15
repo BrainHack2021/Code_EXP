@@ -31,8 +31,8 @@ export default function chooser({ navigation }) {
             setSelectedId(itemValue);}
           }
         >
-          <Picker.Item label="Ion" value="1" />
-          <Picker.Item label="Wisma" value="2" />
+          <Picker.Item label="Ion Orchard" value="1" />
+          <Picker.Item label="Wisma Atria" value="2" />
           <Picker.Item label="Ngee Ann City" value="3" />
         </Picker>
       </View>
