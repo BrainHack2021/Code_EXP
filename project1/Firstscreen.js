@@ -14,7 +14,10 @@ export default function chooser({ navigation }) {
         <Button
           color="orange"
           title="Go to Profile"
-          onPress={() => navigation.navigate("Profile", { screen: "Headcount" })} //additional of a button to navigate elsewhere
+          onPress={() => navigation.navigate('Profile', {
+            screen: 'Alternatives',
+            params: { mallName: locationId, storeName: locationOutlet },
+          })} //additional of a button to navigate elsewhere
         />
         <Picker
           selectedValue={locationId}
