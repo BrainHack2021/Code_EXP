@@ -10,6 +10,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import  chooser from './Firstscreen';
 
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const Table = () => {
   return (
@@ -56,18 +57,29 @@ function TabB() {
   );
 }
 
-function TabC() {
+function TabC({route, navigator}) {
+
+  const { mallName, storeName } = route.params;
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Similar Places</Text>
+      <Text style={styles.text}>Similar Places {JSON.stringify(mallName)} {JSON.stringify(storeName)}</Text>
       <chooser />
     </View>
   );
 }
 
-const Tab = createBottomTabNavigator();
 
-function ReactNavigationBottomTabs() {
+
+function ReactNavigationBottomTabs( {route, navigator} ) {
+
+
+/*  const { name } = route.params;
+  return (
+    <View>
+      <Text>{JSON.stringify(name)}</Text>
+    </View>
+  )*/
+  
   return (
       <Tab.Navigator>
         <Tab.Screen

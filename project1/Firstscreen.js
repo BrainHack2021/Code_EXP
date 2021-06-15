@@ -3,60 +3,56 @@ import { Button, View, Picker, StyleSheet, Switch } from "react-native";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { propTypes } from "react-bootstrap/esm/Image";
+import ionMenu from "./ionShops.js";
+import wismaMenu from "./wismaShops.js";
+import NgeeAnnMenu from "./NgeeAnnShops.js";
 
-export default function chooser({ navigation: { navigate } }) {
+export default function chooser({ navigation }) {
   const [locationId, setSelectedId] = useState("1");
-  const [locationOutlet, setSelectedOutlet] = useState(0);
+  const [locationOutlet, setSelectedOutlet] = useState('0');
 
   return (
     <View>
       <View style={styles.dropdownBox}>
+        <Button
+          color="orange"
+          title="Go to Profile"
+          onPress={() => navigation.navigate('Profile', {
+            screen: 'Alternatives',
+            params: { mallName: locationId, storeName: locationOutlet },
+          })} //additional of a button to navigate elsewhere
+        />
+        
         <Picker
           selectedValue={locationId}
           style={{ height: 50, width: 150 }}
-          onValueChange={(itemValue) => setSelectedId(itemValue)}
+          onValueChange={(itemValue) => {
+            setSelectedOutlet("0");
+            setSelectedId(itemValue);}
+          }
         >
           <Picker.Item label="Ion" value="1" />
           <Picker.Item label="Wisma" value="2" />
-          <Picker.Item label="Taka" value="3" />
+          <Picker.Item label="Ngee Ann City" value="3" />
         </Picker>
       </View>
       <View style={styles.dropdownBox}>
         {(() => {
+          
           switch (locationId) {
             case "1":
               return (
-                <Picker
-                  selectedValue={locationOutlet}
-                  style={{ height: 50, width: 150 }}
-                  onValueChange={(itemValue) => setSelectedOutlet(itemValue)}
-                >
-                  <Picker.Item label="Fuck" value="f" />;
-                  <Picker.Item label="This" value="t" />;
-                  <Picker.Item label="Nonsense" value="s" />;
-                </Picker>
+                ionMenu(locationOutlet, setSelectedOutlet)
               );
 
             case "2":
               return (
-                <Picker
-                  selectedValue={locationOutlet}
-                  style={{ height: 50, width: 150 }}
-                  onValueChange={(itemValue) => setSelectedOutlet(itemValue)}
-                >
-                  <Picker.Item label="Take me 2 hrs knn wtf" value="x" />;
-                </Picker>
+                wismaMenu(locationOutlet, setSelectedOutlet)
               );
 
             case "3":
               return (
-                <Picker
-                  selectedValue={locationOutlet}
-                  style={{ height: 50, width: 150 }}
-                  onValueChange={(itemValue) => setSelectedOutlet(itemValue)}
-                >
-                  <Picker.Item label="Jesussss" value="fml" />;
-                </Picker>
+                NgeeAnnMenu(locationOutlet, setSelectedOutlet)
               );
           }
         })()}
@@ -65,7 +61,7 @@ export default function chooser({ navigation: { navigate } }) {
         <Button
           color="orange"
           title="Go to Profile"
-          onPress={() => navigate("Profile", { screen: "Headcount" })} //additional of a button to navigate elsewhere
+          onPress={() => navigation.navigate("Profile", { screen: "Headcount" })} //additional of a button to navigate elsewhere
         />
       </View>
     </View>
