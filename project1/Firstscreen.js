@@ -4,13 +4,18 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { propTypes } from "react-bootstrap/esm/Image";
 
-export default function chooser({ navigation: { navigate } }) {
+export default function chooser({ navigation }) {
   const [locationId, setSelectedId] = useState("1");
   const [locationOutlet, setSelectedOutlet] = useState(0);
 
   return (
     <View>
       <View style={styles.dropdownBox}>
+        <Button
+          color="orange"
+          title="Go to Profile"
+          onPress={() => navigation.navigate("Profile", { screen: "Headcount" })} //additional of a button to navigate elsewhere
+        />
         <Picker
           selectedValue={locationId}
           style={{ height: 50, width: 150 }}
@@ -65,7 +70,7 @@ export default function chooser({ navigation: { navigate } }) {
         <Button
           color="orange"
           title="Go to Profile"
-          onPress={() => navigate("Profile", { screen: "Headcount" })} //additional of a button to navigate elsewhere
+          onPress={() => navigation.navigate("Profile", { screen: "Headcount" })} //additional of a button to navigate elsewhere
         />
       </View>
     </View>
