@@ -19,6 +19,40 @@ var mallDict = {
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+const history = [
+    {
+      date: "12 June 2021",
+      cases: 5,
+    },
+    {
+      date: "10 June 2021",
+      cases: 8,
+    },
+    {
+      date: "5 June 2021",
+      cases: 12,
+    },
+];
+
+const history2 = [
+  {
+    date: "11 June 2021",
+    cases: 4,
+  },
+  {
+    date: "10 June 2021",
+    cases: 5,
+  },
+  {
+    date: "5 June 2021",
+    cases: 19,
+  },
+];
+
+var dict = {};
+dict[1] = history;
+dict[2] = history2;
+
 const Table = () => {
   return (
     <DataTable>
@@ -26,16 +60,14 @@ const Table = () => {
         <DataTable.Title>Date</DataTable.Title>
         <DataTable.Title numeric>Cases</DataTable.Title>
       </DataTable.Header>
-
-      <DataTable.Row>
-        <DataTable.Cell>12 June 2021</DataTable.Cell>
-        <DataTable.Cell numeric>5</DataTable.Cell>
-      </DataTable.Row>
-
-      <DataTable.Row>
-        <DataTable.Cell>10 June 2021</DataTable.Cell>
-        <DataTable.Cell numeric>9</DataTable.Cell>
-      </DataTable.Row>
+      
+      {dict[2].map((hist) => (
+        <DataTable.Row>
+          <DataTable.Cell>{hist.date}</DataTable.Cell>
+          <DataTable.Cell numeric>{hist.cases}</DataTable.Cell>
+        </DataTable.Row>
+      ))}
+      
     </DataTable>
   );
 }
