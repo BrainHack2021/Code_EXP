@@ -79,38 +79,55 @@ const Tab = createBottomTabNavigator();
 const history = [
     {
       date: "12 June 2021",
-      cases: 5,
+      cases: Math.floor(Math.random() * 5) + 1,
     },
     {
       date: "10 June 2021",
-      cases: 8,
+      cases: Math.floor(Math.random() * 10) + 1,
     },
     {
       date: "5 June 2021",
-      cases: 12,
+      cases: Math.floor(Math.random() * 20) + 1,
     },
 ];
 
 const history2 = [
   {
-    date: "11 June 2021",
-    cases: 4,
+    date: "8 June 2021",
+    cases: Math.floor(Math.random() * 10) + 1,
   },
   {
-    date: "10 June 2021",
-    cases: 5,
+    date: "4 June 2021",
+    cases: Math.floor(Math.random() * 10) + 1,
   },
   {
-    date: "5 June 2021",
-    cases: 19,
+    date: "1 June 2021",
+    cases: Math.floor(Math.random() * 20) + 1,
+  },
+  {
+    date: "28 May 2021",
+    cases: Math.floor(Math.random() * 20) + 1,
+  }
+];
+
+const history3 = [
+  {
+    date: "14 June 2021",
+    cases: Math.floor(Math.random() * 5) + 1,
+  },
+  {
+    date: "7 June 2021",
+    cases: Math.floor(Math.random() * 10) + 1,
   },
 ];
 
 var dict = {};
 dict[1] = history;
 dict[2] = history2;
+dict[3] = history3;
 
 const Table = () => {
+  const { mallName, storeName } = current.params;
   return (
     <DataTable>
       <DataTable.Header>
@@ -118,7 +135,7 @@ const Table = () => {
         <DataTable.Title numeric>Cases</DataTable.Title>
       </DataTable.Header>
       
-      {dict[2].map((hist) => (
+      {dict[mallName].map((hist) => (
         <DataTable.Row>
           <DataTable.Cell>{hist.date}</DataTable.Cell>
           <DataTable.Cell numeric>{hist.cases}</DataTable.Cell>
@@ -131,8 +148,8 @@ const Table = () => {
 
 
 function TabA() {
-  var count = Math.floor(Math.random() * 100) + 1;
-  var level = (count > 100)
+  var count = Math.floor(Math.random() * 1000) + 1;
+  var level = (count > 500)
   const [selectedValue, setSelectedValue] = useState("java");
   return (
     <View style={styles.container}>
@@ -145,12 +162,12 @@ function TabA() {
 }
 
 function TabB() {
-
   const { mallName, storeName } = current.params;
-
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Past Cases</Text>
+      <Text style={styles.text}>Past Cases for 
+        <Text style={styles.malltext}> {mallDict[mallName]}</Text>
+      </Text>
       <Table />
       <chooser />
     </View>
@@ -200,7 +217,7 @@ function TabC({route, navigator}) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Similar Places {JSON.stringify(mallDict[mallName])} {JSON.stringify(storeDict[storeName])}</Text>
+      <Text style={styles.text}>Alternative Places</Text>
       <Alt_Table />
       <chooser />
     </View>
@@ -271,6 +288,11 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 40,
     fontWeight: 'bold',
+  },
+  malltext: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    color: 'blue'
   },
   danger: {
     color: 'red'
