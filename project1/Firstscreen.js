@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, View, Picker, StyleSheet, Switch } from "react-native";
+import { Button, View, Picker, StyleSheet, Switch, Text } from "react-native";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { propTypes } from "react-bootstrap/esm/Image";
@@ -13,13 +13,11 @@ export default function chooser({ navigation }) {
 
   return (
     <View>
+      <View style={styles.text_box}>
+      <Text style={styles.textActual}>Please select shopping center</Text>
+      </View>
       <View style={styles.dropdownBox}>
-        <Button
-          color="orange"
-          title="Go to Profile"
-          onPress={() => navigation.navigate('Profile', { mallName: locationId, storeName: locationOutlet },
-          )} //additional of a button to navigate elsewhere
-        />
+        
         
         <Picker
           selectedValue={locationId}
@@ -33,6 +31,9 @@ export default function chooser({ navigation }) {
           <Picker.Item label="Wisma Atria" value="2" />
           <Picker.Item label="Ngee Ann City" value="3" />
         </Picker>
+      </View>
+      <View style={styles.text_box}>
+        <Text style={styles.textActual}>Which store are you visiting?</Text>
       </View>
       <View style={styles.dropdownBox}>
         {(() => {
@@ -55,22 +56,51 @@ export default function chooser({ navigation }) {
           }
         })()}
       </View>
-      
+      <View style={styles.button_format}>
+      <Button
+          color="orange"
+          title="View Recommendations"
+          onPress={() => navigation.navigate('Profile', { mallName: locationId, storeName: locationOutlet },
+          )} //additional of a button to navigate elsewhere
+        />
+        </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   dropdownBox: {
-    flex: 1,
+    flex: 2,
     margin: "10%",
     alignItems: "center",
     justifyContent: "center",
   },
   profileBox: {
-    flex: 1,
+    flex: 2,
     paddingTop: "50%",
     alignItems: "center",
     justifyContent: "center",
   },
+  button_format: {
+    flex: 1,
+    margin: "10%",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  text_box: {
+    flex: 1,
+    fontWeight: "bold",
+    fontSize: 40,
+    margin: "10%",
+    alignItems: "center",
+    justifyContent: "center"
+
+  },
+  textActual: {
+    
+    fontWeight: "bold",
+    fontSize: 40,
+    
+
+  }
 });
