@@ -162,9 +162,12 @@ function TabA() {
 }
 
 function TabB() {
+  const { mallName, storeName } = current.params;
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Past Cases</Text>
+      <Text style={styles.text}>Past Cases for 
+        <Text style={styles.malltext}> {mallDict[mallName]}</Text>
+      </Text>
       <Table />
       <chooser />
     </View>
@@ -214,7 +217,7 @@ function TabC({route, navigator}) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Similar Places {JSON.stringify(mallDict[mallName])} {JSON.stringify(storeDict[storeName])}</Text>
+      <Text style={styles.text}>Alternative Places</Text>
       <Alt_Table />
       <chooser />
     </View>
@@ -285,6 +288,11 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 40,
     fontWeight: 'bold',
+  },
+  malltext: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    color: 'blue'
   },
   danger: {
     color: 'red'
