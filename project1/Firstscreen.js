@@ -55,13 +55,7 @@ export default function chooser({ navigation }) {
           }
         })()}
       </View>
-      <View style={styles.profileBox}>
-        <Button
-          color="orange"
-          title="Go to Profile"
-          onPress={() => navigation.navigate("Profile", { screen: "Headcount" })} //additional of a button to navigate elsewhere
-        />
-      </View>
+      
     </View>
   );
 }
