@@ -130,8 +130,8 @@ const Table = () => {
 }
 
 function TabA() {
-  var count = 9999;
-  var level = (count > 5000)
+  var count = Math.floor(Math.random() * 100) + 1;
+  var level = (count > 100)
   const [selectedValue, setSelectedValue] = useState("java");
   return (
     <View style={styles.container}>
