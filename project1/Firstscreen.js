@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Button, View, Picker, StyleSheet, Switch, Text } from "react-native";
+import { Button, View, StyleSheet, Switch, Text } from "react-native";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { propTypes } from "react-bootstrap/esm/Image";
 import ionMenu from "./ionShops.js";
 import wismaMenu from "./wismaShops.js";
 import NgeeAnnMenu from "./NgeeAnnShops.js";
+import {Picker} from '@react-native-picker/picker';
 
 export default function chooser({ navigation }) {
   const [locationId, setSelectedId] = useState("1");

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Button, View, Picker, StyleSheet, Switch } from "react-native";
+import { Button, View, StyleSheet, Switch } from "react-native";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { propTypes } from "react-bootstrap/esm/Image";
+import {Picker} from '@react-native-picker/picker';
 
 export default function wismaMenu(locationOutlet, setSelectedOutlet) {
     return (
