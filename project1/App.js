@@ -129,6 +129,7 @@ const Table = () => {
   );
 }
 
+
 function TabA() {
   var count = Math.floor(Math.random() * 100) + 1;
   var level = (count > 100)
@@ -150,13 +151,47 @@ function TabB() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Past Cases</Text>
-      <Text style={styles.text}>Similar Places {JSON.stringify(mallDict[mallName])} {JSON.stringify(storeDict[storeName])}</Text>
       <Table />
       <chooser />
     </View>
   );
 }
 var current;
+
+const Alt_Table = () => {
+  const { mallName, storeName } = current.params;
+  var places = [];
+
+  var keys = storeToMall[storeName];
+  if (storeName === undefined || keys === undefined) {
+    places.push("Please select a store.");
+  }
+  else {
+   for (var i = 0; i < keys.length; i++) {
+    if (mallDict[keys[i]] !==  mallDict[mallName]) {
+      places.push(mallDict[keys[i]]);
+    }
+   }
+  }
+
+  if (places.length === 0) {
+    places.push("There are no other alternatives. Please select a different outlet");
+  }
+  return (    
+  <DataTable>
+    <DataTable.Header>
+      <DataTable.Title>Places</DataTable.Title>
+    </DataTable.Header>
+
+    {places.map((place) => (
+        <DataTable.Row>
+          <DataTable.Cell>{place}</DataTable.Cell>
+        </DataTable.Row>
+      ))}
+
+  </DataTable>)
+}
+
 function TabC({route, navigator}) {
 
   const { mallName, storeName } = current.params;
@@ -166,6 +201,7 @@ function TabC({route, navigator}) {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Similar Places {JSON.stringify(mallDict[mallName])} {JSON.stringify(storeDict[storeName])}</Text>
+      <Alt_Table />
       <chooser />
     </View>
   );
