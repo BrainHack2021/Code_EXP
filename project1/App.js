@@ -9,6 +9,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import  chooser from './Firstscreen';
 
+var mallDict = {
+  0: "No Mall Selected",
+  1: "Ion Orchard",
+  2: "Wisma Atria",
+  3: "Ngee Ann City"
+}
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -48,31 +55,37 @@ function TabA() {
 }
 
 function TabB() {
+
+  const { mallName, storeName } = current.params;
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Past Cases</Text>
+      <Text style={styles.text}>Similar Places {JSON.stringify(mallDict[mallName])} {JSON.stringify(storeName)}</Text>
       <Table />
       <chooser />
     </View>
   );
 }
-
+var current;
 function TabC({route, navigator}) {
 
-  const { mallName, storeName } = route.params;
+  const { mallName, storeName } = current.params;
+  
+  
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Similar Places {JSON.stringify(mallName)} {JSON.stringify(storeName)}</Text>
+      <Text style={styles.text}>Similar Places {JSON.stringify(mallDict[mallName])} {JSON.stringify(storeName)}</Text>
       <chooser />
     </View>
   );
 }
 
 
-
 function ReactNavigationBottomTabs( {route, navigator} ) {
 
-
+current = route;
 /*  const { name } = route.params;
   return (
     <View>
